@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="ms">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Bengkel Kerja Penyelarasan — Sesi September 2025</title>
+  <meta name="description" content="Halaman info program: Pertukaran & Penempatan Guru (Antara Negeri/Antara Bahagian)">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main id="app" class="container">
+    <!-- Header -->
+    <section class="card hero">
+      <div class="jata" aria-hidden="true">
+        <svg viewBox="0 0 120 120">
+          <circle cx="60" cy="60" r="56" fill="#f59e0b22"/>
+          <text x="60" y="67" text-anchor="middle" font-size="46" fill="#ef4444" font-weight="700">MY</text>
+        </svg>
+      </div>
+      <header class="agency">
+        <p class="agency-top">KEMENTERIAN PENDIDIKAN</p>
+        <p class="agency-sub">JABATAN PENDIDIKAN NEGERI JOHOR</p>
+      </header>
+    </section>
+
+    <!-- Banner -->
+    <section class="card banner">
+      <h1 id="eventTitle">Bengkel Kerja Penyelarasan</h1>
+      <p id="eventSubtitle" class="muted">Pertukaran &amp; Penempatan Guru</p>
+      <p id="eventScope" class="scope">Antara Negeri/Antara Bahagian</p>
+      <span class="pill" id="eventSession">Sesi September 2025</span>
+    </section>
+
+    <!-- Info badges -->
+    <section class="badges">
+      <div class="badge">
+        <div class="badge-icon">🏛️</div>
+        <div>
+          <div class="badge-title">Kementerian Pendidikan</div>
+          <div class="badge-sub" id="eventCountry">Malaysia</div>
+        </div>
+      </div>
+      <div class="badge negative">
+        <div class="badge-icon">🗓️</div>
+        <div>
+          <div class="badge-title" id="eventDates">26–29 Ogos 2025</div>
+          <div class="badge-sub">4 Hari Program Intensif</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contacts -->
+    <section class="section">
+      <h2>Urus Setia</h2>
+      <div id="contacts" class="contacts"></div>
+    </section>
+
+    <!-- Buttons -->
+    <section class="section grid-actions">
+      <a class="btn btn-orange" id="btnSurat" href="#" target="_blank">📄 Muat Turun Surat Makluman</a>
+      <button class="btn" data-modal="makanan">🍽️ Pakej Makanan</button>
+      <button class="btn btn-blue" data-modal="pakaian">👔 Kod Pakaian</button>
+      <a class="btn btn-green" id="btnSolat" href="https://www.e-solat.gov.my" target="_blank">🕌 Waktu Solat</a>
+      <button class="btn btn-purple" data-modal="bilik">🏢 Bilik Bengkel</button>
+      <button class="btn btn-dark" id="btnBack">🏠 Kembali</button>
+    </section>
+
+    <footer class="footer">
+      <p>Malaysia MADANI</p>
+    </footer>
+  </main>
+
+  <!-- Modal -->
+  <div id="modal" class="modal" aria-hidden="true">
+    <div class="modal-card">
+      <header class="modal-header">
+        <h3 id="modalTitle">Tajuk</h3>
+        <button class="icon-btn" id="modalClose">✖</button>
+      </header>
+      <div id="modalBody" class="modal-body"></div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
