@@ -1,86 +1,137 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ms">
 <head>
-  <meta charset="utf-8" />
+  <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Bengkel Kerja Penyelarasan — Sesi September 2025</title>
-  <meta name="description" content="Halaman info program: Pertukaran & Penempatan Guru (Antara Negeri/Antara Bahagian)">
-  <link rel="stylesheet" href="style.css" />
+  <meta name="theme-color" content="#34495e" />
+  <title>Bengkel Kerja Pengesahan — Pertukaran & Penempatan Guru</title>
+  <meta name="description" content="Maklumat lengkap bengkel kerja pengesahan Pertukaran & Penempatan Guru Negeri Kedah (Sesi September 2025): tarikh, lokasi, urus setia, makanan, bilik, waktu solat, dan pautan Google Maps." />
+  <style>
+    :root{
+      --bg1:#667eea;--bg2:#764ba2;--ink:#2c3e50;--muted:#666;--card:#ffffff;--shadow:rgba(0,0,0,.1);
+      --brand:#3498db;--brand2:#2980b9;--ok:#27ae60;--warn:#f39c12;--accent:#9b59b6;--danger:#e74c3c;
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,sans-serif;min-height:100svh;background:linear-gradient(135deg,var(--bg1),var(--bg2));color:#333;padding:20px}
+    .container{max-width:420px;margin:auto;background:var(--card);border-radius:20px;box-shadow:0 20px 40px var(--shadow);overflow:hidden}
+    header{background:linear-gradient(135deg,#2c3e50,#34495e);color:#fff;padding:28px 20px;text-align:center}
+    header img.logo{max-width:120px;margin-bottom:10px}
+    header h1{font-size:24px;font-weight:800;margin-bottom:6px}
+    header h2{font-size:18px;font-weight:600;opacity:.95;margin-bottom:10px}
+    .scope{font-size:13px;opacity:.85;margin-bottom:12px}
+    .session{display:inline-block;background:rgba(255,255,255,.18);padding:8px 14px;border-radius:999px;font-weight:700}
+    main{padding:22px 18px}
+    .info-item{display:flex;gap:12px;align-items:center;background:#f8f9fa;border-radius:12px;border-left:4px solid var(--brand);padding:12px;margin-bottom:12px}
+    .info-item .icon{font-size:20px;width:28px;text-align:center}
+    .label{font-weight:700;color:var(--ink);margin-bottom:2px}
+    .value{color:#555;font-size:14px}
+    .organizers{background:#e8f5e8;border-radius:14px;padding:14px;margin:16px 0}
+    .organizers h3{color:var(--ok);font-size:16px;margin-bottom:10px}
+    .organizer{background:#fff;border-radius:10px;padding:12px;box-shadow:0 2px 5px rgba(0,0,0,.05);margin-bottom:10px;display:flex;gap:12px;align-items:center}
+    .organizer img{width:60px;height:60px;border-radius:50%;object-fit:cover}
+    .organizer-info{flex:1}
+    .organizer-name{font-weight:700;color:var(--ink)}
+    .organizer-title{font-size:12px;color:var(--muted);margin:.25rem 0 .5rem}
+    .contact-buttons{display:flex;gap:8px}
+    .btn{display:inline-flex;justify-content:center;align-items:center;gap:6px;padding:10px 12px;border:0;border-radius:12px;text-decoration:none;cursor:pointer;font-weight:700;transition:transform .15s ease, box-shadow .2s}
+    .btn:focus-visible{outline:3px solid #0003;outline-offset:2px}
+    .btn:hover{transform:translateY(-2px);box-shadow:0 6px 14px rgba(0,0,0,.18)}
+    .btn-call{background:var(--ok);color:#fff}
+    .btn-wa{background:#25d366;color:#fff}
+
+    .grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:18px 0}
+    .action{flex-direction:column;gap:6px}
+    .btn-download{background:linear-gradient(135deg,var(--brand),var(--brand2));color:#fff}
+    .btn-food{background:linear-gradient(135deg,#e67e22,#d35400);color:#fff}
+    .btn-prayer{background:linear-gradient(135deg,#27ae60,#229954);color:#fff}
+    .btn-room{background:linear-gradient(135deg,#f39c12,#e67e22);color:#fff}
+    .btn-maps{background:linear-gradient(135deg,var(--danger),#c0392b);color:#fff;grid-column:1/-1}
+    .btn-share{background:linear-gradient(135deg,#8e44ad,#6c3483);color:#fff}
+    .btn-calendar{background:linear-gradient(135deg,#16a085,#0e7a65);color:#fff}
+
+    dialog{border:none;border-radius:14px;max-width:520px;width:92vw;padding:0;box-shadow:0 20px 40px rgba(0,0,0,.35)}
+    dialog::backdrop{background:rgba(0,0,0,.45)}
+    .modal-header{background:linear-gradient(135deg,#2c3e50,#34495e);color:#fff;padding:16px 18px;border-radius:14px 14px 0 0;display:flex;justify-content:space-between;align-items:center}
+    .modal-title{font-size:18px;font-weight:800}
+    .close{font-size:26px;cursor:pointer;line-height:1}
+    .modal-body{padding:16px 18px;max-height:70svh;overflow:auto}
+
+    @media (max-width:480px){
+      .container{margin:10px;width:calc(100% - 20px)}
+      .grid{grid-template-columns:1fr}
+      .btn-maps{grid-column:auto}
+      .organizer{flex-direction:column;align-items:flex-start}
+      .organizer img{margin-bottom:8px}
+    }
+  </style>
 </head>
 <body>
-  <main id="app" class="container">
-    <!-- Header -->
-    <section class="card hero">
-      <div class="jata" aria-hidden="true">
-        <svg viewBox="0 0 120 120">
-          <circle cx="60" cy="60" r="56" fill="#f59e0b22"/>
-          <text x="60" y="67" text-anchor="middle" font-size="46" fill="#ef4444" font-weight="700">MY</text>
-        </svg>
-      </div>
-      <header class="agency">
-        <p class="agency-top">KEMENTERIAN PENDIDIKAN</p>
-        <p class="agency-sub">JABATAN PENDIDIKAN NEGERI JOHOR</p>
-      </header>
-    </section>
+  <div class="container" role="region" aria-label="Halaman Bengkel">
+    <header>
+      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAyAAAAGQCAYAAAD..." alt="Jata Negara Malaysia" class="logo" />
+      <h1>Bengkel Kerja Pengesahan</h1>
+      <h2>Pertukaran &amp; Penempatan Guru</h2>
+      <p class="scope">Antara Negeri / Antara Bahagian / Antara Daerah — Negeri Kedah</p>
+      <p class="session">Sesi September 2025 • <span id="countdown" aria-live="polite"></span></p>
+    </header>
 
-    <!-- Banner -->
-    <section class="card banner">
-      <h1 id="eventTitle">Bengkel Kerja Penyelarasan</h1>
-      <p id="eventSubtitle" class="muted">Pertukaran &amp; Penempatan Guru</p>
-      <p id="eventScope" class="scope">Antara Negeri/Antara Bahagian</p>
-      <span class="pill" id="eventSession">Sesi September 2025</span>
-    </section>
-
-    <!-- Info badges -->
-    <section class="badges">
-      <div class="badge">
-        <div class="badge-icon">🏛️</div>
-        <div>
-          <div class="badge-title">Kementerian Pendidikan</div>
-          <div class="badge-sub" id="eventCountry">Malaysia</div>
+    <main id="main" tabindex="-1">
+      <section aria-labelledby="maklumat">
+        <div class="info-item">
+          <div class="icon" aria-hidden>📅</div>
+          <div>
+            <div id="maklumat" class="label">Tarikh</div>
+            <div class="value">08–10 September 2025 (3 Hari Bengkel Intensif)</div>
+          </div>
         </div>
-      </div>
-      <div class="badge negative">
-        <div class="badge-icon">🗓️</div>
-        <div>
-          <div class="badge-title" id="eventDates">26–29 Ogos 2025</div>
-          <div class="badge-sub">4 Hari Program Intensif</div>
+        <div class="info-item">
+          <div class="icon" aria-hidden>📍</div>
+          <div>
+            <div class="label">Lokasi</div>
+            <div class="value">Hotel Raia, Kompleks Tabung Haji, Pulau Pinang</div>
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <!-- Contacts -->
-    <section class="section">
-      <h2>Urus Setia</h2>
-      <div id="contacts" class="contacts"></div>
-    </section>
+      <section class="organizers" aria-labelledby="urussetia">
+        <h3 id="urussetia">👥 Urus Setia</h3>
+        <div class="organizer">
+          <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAyAAAAGQCAYAAAD..." alt="En. Ahmad Shukri" />
+          <div class="organizer-info">
+            <div class="organizer-name">En. Ahmad Shukri bin Abd Majid</div>
+            <div class="organizer-title">Penolong Pengarah Unit Prasekolah dan Rendah</div>
+            <div class="contact-buttons">
+              <a class="btn btn-call" href="tel:+60197119096" rel="nofollow" data-sfx>📞 Call</a>
+              <a class="btn btn-wa" href="https://wa.me/60197119096" target="_blank" rel="noopener" data-sfx>💬 WhatsApp</a>
+            </div>
+          </div>
+        </div>
+        <div class="organizer">
+          <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAyAAAAGQCAYAAAD..." alt="En. Ahmad Muzani" />
+          <div class="organizer-info">
+            <div class="organizer-name">En. Ahmad Muzani bin Abd Jalil</div>
+            <div class="organizer-title">Penolong Pengarah Unit Menengah dan Tingkatan 6</div>
+            <div class="contact-buttons">
+              <a class="btn btn-call" href="tel:+60194516226" rel="nofollow" data-sfx>📞 Call</a>
+              <a class="btn btn-wa" href="https://wa.me/60194516226" target="_blank" rel="noopener" data-sfx>💬 WhatsApp</a>
+            </div>
+          </div>
+        </div>
+      </section>
 
-    <!-- Buttons -->
-    <section class="section grid-actions">
-      <a class="btn btn-orange" id="btnSurat" href="#" target="_blank">📄 Muat Turun Surat Makluman</a>
-      <button class="btn" data-modal="makanan">🍽️ Pakej Makanan</button>
-      <button class="btn btn-blue" data-modal="pakaian">👔 Kod Pakaian</button>
-      <a class="btn btn-green" id="btnSolat" href="https://www.e-solat.gov.my" target="_blank">🕌 Waktu Solat</a>
-      <button class="btn btn-purple" data-modal="bilik">🏢 Bilik Bengkel</button>
-      <button class="btn btn-dark" id="btnBack">🏠 Kembali</button>
-    </section>
+      <section aria-label="Tindakan pantas">
+        <div class="grid">
+          <a class="btn btn-download action" href="https://drive.google.com/file/d/19qUb7o_m67ZKoanmShUhchTtHi8MO7zP/view?usp=sharing" target="_blank" rel="noopener" data-sfx>
+            <span>📄</span><span>Muat Turun Surat</span>
+          </a>
+          <button class="btn btn-food action" data-open="food">🍽️ <span>Pakej Makanan</span></button>
+          <button class="btn btn-prayer action" data-open="prayer">🕌 <span>Waktu Solat</span></button>
+          <button class="btn btn-room action" data-open="room">🏢 <span>Bilik Bengkel</span></button>
+          <a class="btn btn-maps action" href="https://maps.app.goo.gl/6k1iUFz5yduzLa3XA" target="_blank" rel="noopener" data-sfx>🏠 <span>Google Maps ke Destinasi</span></a>
+        </div>
+      </section>
 
-    <footer class="footer">
-      <p>Malaysia MADANI</p>
-    </footer>
-  </main>
-
-  <!-- Modal -->
-  <div id="modal" class="modal" aria-hidden="true">
-    <div class="modal-card">
-      <header class="modal-header">
-        <h3 id="modalTitle">Tajuk</h3>
-        <button class="icon-btn" id="modalClose">✖</button>
-      </header>
-      <div id="modalBody" class="modal-body"></div>
-    </div>
+    </main>
   </div>
-
-  <script src="script.js"></script>
 </body>
 </html>
