@@ -192,26 +192,56 @@
   </dialog>
 
   <script>
-    function playClick(){
-      try{
-        const ctx=new(window.AudioContext||window.webkitAudioContext)();
-        const o=ctx.createOscillator();
-        const g=ctx.createGain();
-        o.connect(g); g.connect(ctx.destination);
-        o.frequency.value=750; g.gain.value=0.08;
-        o.start();
-        setTimeout(()=>{o.stop();ctx.close&&ctx.close();},120);
-      }catch(e){}
+(() => {
+  // Bunyi klik ringkas (tidak ganggu pelayar lama)
+  function playClick(){
+    try{
+      const ctx = new (window.AudioContext || window.webkitAudioContext)();
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      osc.connect(gain); gain.connect(ctx.destination);
+      osc.frequency.value = 750; gain.gain.value = 0.08;
+      osc.start(); setTimeout(()=>{ osc.stop(); ctx.close && ctx.close(); }, 120);
+    }catch(e){}
+  }
+
+  // Buka/Tutup dialog dengan fallback (untuk pelayar tanpa <dialog>.showModal)
+  function openDlg(id){
+    const d = document.getElementById(id);
+    if (!d) return;
+    if (typeof d.showModal === "function") d.showModal();
+    else d.setAttribute("open", "");
+    playClick();
+  }
+  function closeDlg(node){
+    const d = node.closest ? node.closest("dialog") : node;
+    if (!d) return;
+    if (typeof d.close === "function") d.close();
+    else d.removeAttribute("open");
+    playClick();
+  }
+
+  // Delegation: buka/tutup modal + bunyi
+  document.addEventListener("click", (e) => {
+    const openBtn  = e.target.closest?.("[data-open]");
+    const closeBtn = e.target.closest?.("[data-close]");
+    if (openBtn)  openDlg(openBtn.dataset.open);
+    if (closeBtn) closeDlg(closeBtn);
+
+    // Klik pada backdrop (ruang kosong dalam dialog) untuk tutup
+    if (e.target.tagName === "DIALOG") closeDlg(e.target);
+  });
+
+  // Esc untuk tutup semua yang terbuka
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") {
+      document.querySelectorAll("dialog[open]").forEach((d) => closeDlg(d));
     }
-    function openDlg(id){
-      const d=document.getElementById(id);
-      if(d.showModal){d.showModal();} else {d.setAttribute('open','');}
-      playClick();
-    }
-    function closeDlg(btn){
-      const d=btn.closest('dialog');
-      if(d.close){d.close();} else {d.removeAttribute('open');}
-      playClick();
-    }
-    document.querySelectorAll('[data-open]').forEach(btn=>btn.addEventListener('click',()=>openDlg(btn.dataset.open)));
-    document.querySelectorAll('[data-close]').forEach(btn=>
+  });
+
+  // Bunyi untuk semua butang/tindakan
+  document.querySelectorAll(".btn, .action").forEach((el) => {
+    el.addEventListener("click", () => playClick());
+  });
+})();
+</script>
